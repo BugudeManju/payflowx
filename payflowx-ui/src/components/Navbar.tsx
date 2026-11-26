@@ -1,28 +1,40 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
-// The header bar. Each NavLink is a button that changes the address (no page reload)
+const linkClass = ({ isActive }: { isActive: boolean }) =>
+  isActive
+    ? "text-sm font-medium text-slate-900"
+    : "text-sm font-medium text-slate-500 hover:text-slate-900";
+
 const Navbar = () => {
   return (
-    <nav className="bg-slate-900">
-      <span className="text-xl font-bold text-white">PayFlowX</span>
-      <div className="links">
-        <NavLink to="/" className="text-white">
-          Home
-        </NavLink>
-        <NavLink to="/profile" className="text-white">
-          Profile
-        </NavLink>
-        <NavLink to="/login" className="text-white">
-          Login
-        </NavLink>
-        <NavLink to="/register" className="text-white">
-          Sign up
-        </NavLink>
-        <NavLink to="/about" className="text-white">
-          About
-        </NavLink>
-      </div>
-    </nav>
+    <header className="border-b bg-white">
+      <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+        {/* Left: logo + page links */}
+        <div className="flex items-center gap-8">
+          <Link to="/" className="text-lg font-bold text-slate-900">
+            PayFlowX
+          </Link>
+          <NavLink to="/" className={linkClass}>
+            Home
+          </NavLink>
+          <NavLink to="/profile" className={linkClass}>
+            Profile
+          </NavLink>
+           <NavLink to="/about" className={linkClass}>
+            About
+          </NavLink>
+        </div>
+
+        {/* Right: login / sign up buttons */}
+        <div className="flex items-center gap-3">
+          <Button variant="ghost" render={<Link to="/login" />}>
+            Log in
+          </Button>
+          <Button render={<Link to="/register" />}>Sign up</Button>
+        </div>
+      </nav>
+    </header>
   );
 };
 
