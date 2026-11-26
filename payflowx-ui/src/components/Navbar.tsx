@@ -18,6 +18,9 @@ const Navbar = () => {
         <NavLink to="/register" className="text-white">
           Sign up
         </NavLink>
+        <NavLink to="/about" className="text-white">
+          About
+        </NavLink>
       </div>
     </nav>
   );
