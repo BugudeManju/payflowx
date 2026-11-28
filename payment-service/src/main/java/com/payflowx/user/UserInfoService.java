@@ -48,4 +48,10 @@ public class UserInfoService implements UserDetailsService {
                 .build();
         repository.save(user);
     }
+
+    public UserResponse getByEmail(String email) {
+        User user = repository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
+        return new UserResponse(user.getName(), user.getEmail());
+    }
 }
